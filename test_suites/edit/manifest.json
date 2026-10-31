@@ -1,0 +1,10 @@
+{
+  "name": "RPG Object Editor Test",
+  "description": "GUI test of the RPG object editor in rpg_plus_game: opens the window, edits an own object's anchor in the form and saves (the game sees it at once), edits the anchor of a foreign object (village_pack's barrel) which writes a patch in rpg_plus_game while the source file stays byte-identical, switches the preview between top-down, isometric and both (each projection is drawn by the game's renderer). Every file the test touched is restored afterwards. Activated by --itest=rpg_object_editor_edit with --game=rpg_plus --new --with-mods=rpg_object_editor.",
+  "sources": [
+    "src/*.cs"
+  ],
+  "depends": [
+    "rpg_plus_game>=1"
+  ]
+}
