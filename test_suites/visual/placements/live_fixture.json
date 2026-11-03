@@ -1,0 +1,11 @@
+{
+  "Kind": "rpg_placement",
+  "Items": [
+    {
+      "Id": "jrp_bureau_hall/visual_test_fixture",
+      "Object": "rpg_object_editor__visual/live_fixture",
+      "X": 1,
+      "Y": 4
+    }
+  ]
+}

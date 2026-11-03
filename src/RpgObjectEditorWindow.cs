@@ -47,6 +47,7 @@ using Cthangover.Core.Utils;
         public RpgObjectEditorWindow() : base("tools/rpg_object_editor/title", "rpg_object", "objects", Fields())
         {
             AttachParentRow();
+            TreeExiting += CloseVisualPartsWindow;
         }
 
         /// <summary>The preview block (null before the window is built).</summary>
@@ -94,6 +95,10 @@ using Cthangover.Core.Utils;
         /// <summary><c>&lt;mod&gt;/new_object</c>, as the schema of <c>rpg_object</c> names new objects.</summary>
         protected override string NewIdBase(string mod) => mod + "/new_object";
 
+        /// <summary>The scenario, map, item and shop of the object's interaction need their mods in depends on save (plan 14.G16).</summary>
+        protected override IEnumerable<(string Kind, string Id)> ExtraReferencesOf(JsonObject data)
+            => RpgInteractReferences.Of(data?["Interact"] as JsonObject);
+
         /// <summary>The first picture of the object: its first part, else its surface or segment picture; a foreign row passes its owner's definition.</summary>
         protected override (string Group, string Path) ThumbnailOf(JsonObject data)
         {
@@ -116,6 +121,9 @@ using Cthangover.Core.Utils;
             blocksHost = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, Name = "ObjectBlocks" };
             blocksHost.AddThemeConstantOverride("separation", UiTokens.Space2);
             var column = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+            visualPartsButton = ToolUi.Button("tools/rpg_object_editor/visual_parts", OpenVisualParts, ButtonKind.Primary);
+            visualPartsButton.Disabled = true;
+            column.AddChild(visualPartsButton);
             column.AddChild(preview);
             column.AddChild(blocksHost);
             return column;
@@ -125,6 +133,7 @@ using Cthangover.Core.Utils;
         protected override void OnSelectionChanged(EntityRecord record)
         {
             UpdateParentRow(record);
+            if (visualPartsButton != null) visualPartsButton.Disabled = record?.Data == null || FormOf(record.Data) != "sprite";
             if (blocksHost == null)
                 return;
             RebuildBlocks(record);

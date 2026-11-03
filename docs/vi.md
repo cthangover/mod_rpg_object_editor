@@ -4,6 +4,8 @@ Trình chỉnh sửa vật thể RPG sửa các vật thể của thế giới R
 
 Mở từ hộp công cụ (biểu tượng búa trên thanh công cụ) với tên **Vật thể RPG**.
 
+Nhấn **Đối tượng mới…** dưới bảng chọn để mở biểu mẫu trong mod của bản đồ. Chọn ảnh và tương tác, lưu rồi chọn đối tượng trong bảng vừa cập nhật để đặt lên bản đồ.
+
 ## Vật thể trong trình chỉnh sửa
 
 Danh sách bên trái hiển thị các vật thể của mod đã chọn, mỗi vật thể có ảnh thu nhỏ. Biểu mẫu bên phải sửa vật thể đang chọn. Đây là thùng vật tư của RPG Plus:

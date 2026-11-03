@@ -1,0 +1,22 @@
+{
+  "Kind": "rpg_object",
+  "Items": [
+    {
+      "Id": "rpg_object_editor__visual/live_fixture",
+      "Form": "sprite",
+      "Solid": false,
+      "Parts": [
+        {
+          "Id": "test",
+          "Image": "interior/bureau_hall_desk",
+          "Geometry": "upright",
+          "Size": [
+            0.01,
+            0.01
+          ],
+          "DrawOrder": "BelowCharacters"
+        }
+      ]
+    }
+  ]
+}

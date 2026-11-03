@@ -4,6 +4,8 @@ El Editor de objetos RPG edita los objetos del mundo RPG: los materiales del sue
 
 Se abre desde la caja de herramientas (el martillo de la barra) como **Objetos RPG**.
 
+Pulsa **Nuevo objeto…** bajo la paleta para abrir su formulario en el mod del mapa. Configura la imagen y la interacción, guarda y elige el objeto en la paleta actualizada para colocarlo.
+
 ## Un objeto en el editor
 
 La lista de la izquierda muestra los objetos del mod elegido, con una miniatura de cada uno. El formulario de la derecha edita el seleccionado. Aquí está el barril de suministros de RPG Plus:

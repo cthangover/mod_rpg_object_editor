@@ -24,6 +24,12 @@
       "activate": [
         "--itest=rpg_object_editor_edit"
       ]
+    },
+    {
+      "id": "visual",
+      "activate": [
+        "--itest=rpg_visual_parts"
+      ]
     }
   ]
 }

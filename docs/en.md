@@ -4,6 +4,38 @@ The RPG Object Editor edits the objects of the RPG world: the ground materials, 
 
 It opens from the tool box (the hammer on the toolbar) as **RPG objects**.
 
+
+For a visible prop or NPC, press **New object…** below the palette. Its form opens in the current map’s mod. Set the picture and interaction, save, then choose the object from the refreshed palette and place it on the map.
+
+## Visual part editing
+
+Select a **sprite** and press **Visual parts editor**. The layout follows the map editor: a permanent parts list on the left, the canvas in the centre, and selected-part settings plus occlusion checks on the right. Click opaque image pixels to select; transparent regions pass selection through. Double-click a list row or press **Focus selected part** to zoom to its main opaque content. **Up / Down** change part order.
+
+The top toolbar has three tools:
+
+- **Select / move part**: drag an image with LMB; white corners resize it. Quad vertices retain their heights while moving in the ground plane.
+- **Place depth point**: click the desk's front edge. The red cross and horizontal guide show the sorting boundary. The cross is draggable in any tool.
+- **Move character**: click or drag on the canvas. The blue foot circle is always draggable, including when the desk hides the figure. Right-side buttons place the figure behind or in front of the part; a status line reports the result.
+
+Choose **By depth** for a desk. If no point exists, it is detected from the bottom of the largest connected opaque region, ignoring detached fragments. **Detect depth from image** repeats this operation. The point can also be moved manually; the room's shared anchor stays untouched.
+
+**Behind characters** always puts the hero on top; **In front of characters** always hides the hero. For walking around a desk use **By depth**: above the red line the part covers the character, below it the character covers the part.
+
+![Behind the desk: the figure is occluded; its blue foot handle remains accessible.](assets/visual-parts-behind.png)
+
+![In front of the desk: the figure draws over the desk.](assets/visual-parts-front.png)
+
+The reference figure's visible silhouette is **1.8 cells tall**, accounting for transparent PNG padding. JRP and RPG Plus figures therefore use the same reference scale. The foot handle matches the renderer's actual sorting point.
+
+Wheel zooms around the pointer, MMB pans, **Fit** shows the whole object, **Ctrl+Z / Ctrl+Y** undo and redo, and **Esc** cancels a drag.
+
+For an overlay PNG cut from a whole room while retaining its canvas, select the room image and press **Add image**. The new image inherits its position, size and projection restriction and receives a detected depth point. Select an existing desk layer rather than adding a duplicate.
+
+**Apply to object** transfers the copy to the main editor as one undo step. Regular **Save** writes it and refreshes the already mounted world while retaining player and NPC positions. **Close without applying** discards the copy. Inherited parts become a local override, foreign entities retain normal patch saving, and unknown existing-part fields are preserved.
+
+The workspace edits base parts. States and variants remain in the main form. A plane supports depth placement and the reference character here; its geometry remains in the advanced form. Upright images and ground parts support mouse movement and resizing.
+
+
 ## An object in the editor
 
 The list on the left holds the objects of the chosen mod, with a thumbnail for each. The form on the right edits the selected one. Here is the supply barrel of RPG Plus:

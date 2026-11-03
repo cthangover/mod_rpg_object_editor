@@ -114,7 +114,8 @@ namespace Cthangover.Tools.RpgObjectEditor
                 blocks[id] = block;
                 canvases[id] = canvas;
             }
-            AddChild(ToolUi.Hint(ToolUi.Tr("tools/rpg_object_editor/drag_hint")));
+            var dragHint = ToolUi.Hint(ToolUi.Tr("tools/rpg_object_editor/drag_hint"));
+            dragHint.Name = "AnchorHint"; AddChild(dragHint);
         }
 
         /// <summary>The projection toggle's value: <see cref="Both"/>, <c>topdown</c> or <c>isometric</c>.</summary>
@@ -187,6 +188,7 @@ namespace Cthangover.Tools.RpgObjectEditor
                 return;
             var neighbour = Neighbour;
             var map = RpgObjectSample.Map(sample, neighbour);
+            if (PartsEditing) map.TileSize = partTileSize;
             scene = builder.Build(map, RpgObjectSample.Cells(sample, neighbour, objects), RpgObjectSample.Statics(sample));
             frame.Focus = new Vector2(map.Width, map.Height) / 2f;
             frame.Actors.Clear();
@@ -217,8 +219,13 @@ namespace Cthangover.Tools.RpgObjectEditor
             FigureCount = 0;
             if (anchorShown && !string.IsNullOrEmpty(playerCharset))
             {
-                AddFigure("player_behind", RpgObjectSample.BehindCell, playerCharset);
-                AddFigure("player_front", RpgObjectSample.InFrontCell, playerCharset);
+                if (PartsEditing)
+                    AddFigure("part_probe", (RpgObjectSample.SpriteX + Math.Max(0, sample.Width - 2), RpgObjectSample.SpriteY + sample.Height / 2), playerCharset);
+                else
+                {
+                    AddFigure("player_behind", RpgObjectSample.BehindCell, playerCharset);
+                    AddFigure("player_front", RpgObjectSample.InFrontCell, playerCharset);
+                }
             }
             foreach (var id in new[] { TopDown, Isometric })
                 Mount(id);
@@ -257,9 +264,11 @@ namespace Cthangover.Tools.RpgObjectEditor
         /// <summary>Releases the views and the scene's textures.</summary>
         public void Clear()
         {
+            ClearPartImages();
             foreach (var view in views.Values)
                 view.Dispose();
             views.Clear();
+            foreach (var marker in markers.Values) marker.Free();
             markers.Clear();
             scene?.Release();
             scene = null;
@@ -310,14 +319,15 @@ namespace Cthangover.Tools.RpgObjectEditor
             var look = builder.ActorLook(new RpgObject { ID = "rpg_object_editor_player", Form = RpgObjectForm.Actor, Charset = charset, Column = TileWalkSheet.IdleColumn }, scene.TileSize);
             if (look == null)
                 return;
+            if (PartsEditing) RpgPreviewFigure.Normalize(look);
             frame.Actors.Add(new TileActorPose
             {
                 Id = id,
                 Visible = true,
-                Charset = true,
+                Charset = !PartsEditing,
                 Facing = 1,
                 Column = TileWalkSheet.IdleColumn,
-                Position = new Vector2(cell.X + 0.5f, cell.Y + 1f),
+                Position = new Vector2(cell.X, cell.Y),
                 Look = look,
                 Tint = Colors.White,
             });
@@ -367,6 +377,7 @@ namespace Cthangover.Tools.RpgObjectEditor
         {
             if (!anchorShown || !views.TryGetValue(projection, out var view))
                 return;
+            if (PartsEditing) { DrawPartsOverlay(projection, marker); return; }
             DrawFootprint(view, marker);
             var centre = PointOf(view, new Vector3(RpgObjectSample.SpriteX + anchorCells[0], RpgObjectSample.SpriteY + anchorCells[1], 0));
             marker.DrawCircle(centre, 6f, new Color(1f, 0.85f, 0.2f, 0.9f));
@@ -403,13 +414,14 @@ namespace Cthangover.Tools.RpgObjectEditor
 
         /// <summary>A world point of the sample scene in canvas coordinates of its view.</summary>
         private static Vector2 PointOf(ITileWorldPresentation view, Vector3 world)
-            => view.Root.Position + view.Root.Scale * view.ProjectToView(world);
+            => view.ProjectToView(world);
 
         private static Vector2 LocalOf(ITileWorldPresentation view, Vector2 canvasPoint)
-            => (canvasPoint - view.Root.Position) / Mathf.Max(0.001f, view.Root.Scale.X);
+            => canvasPoint;
 
         private void OnCanvasInput(string projection, InputEvent ev)
         {
+            if (PartsEditing) { HandlePartsInput(projection, ev); return; }
             if (!anchorShown || !views.TryGetValue(projection, out var view))
                 return;
             if (Brush == FootprintBrush)
