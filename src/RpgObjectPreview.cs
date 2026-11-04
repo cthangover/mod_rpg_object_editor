@@ -209,7 +209,7 @@ namespace Cthangover.Tools.RpgObjectEditor
                         Visible = true,
                         Charset = true,
                         Facing = 1,
-                        Column = TileWalkSheet.IdleColumn,
+                        Column = TileWalkSheet.Animation(look.Texture).IdleColumn,
                         Position = new Vector2(RpgObjectSample.ActorX, RpgObjectSample.ActorY),
                         Look = look,
                         Tint = Colors.White
@@ -326,7 +326,7 @@ namespace Cthangover.Tools.RpgObjectEditor
                 Visible = true,
                 Charset = !PartsEditing,
                 Facing = 1,
-                Column = TileWalkSheet.IdleColumn,
+                Column = TileWalkSheet.Animation(look.Texture).IdleColumn,
                 Position = new Vector2(cell.X, cell.Y),
                 Look = look,
                 Tint = Colors.White,

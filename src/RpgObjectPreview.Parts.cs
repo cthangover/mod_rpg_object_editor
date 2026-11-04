@@ -314,7 +314,7 @@ namespace Cthangover.Tools.RpgObjectEditor
             if (probe == null && frame.Actors.Count > 0)
             {
                 probe = new TileActorPose { Id = "part_probe", Visible = true, Charset = !PartsEditing, Look = frame.Actors[0].Look,
-                    Facing = 1, Column = TileWalkSheet.IdleColumn, Tint = Colors.White };
+                    Facing = 1, Column = TileWalkSheet.Animation(frame.Actors[0].Look.Texture).IdleColumn, Tint = Colors.White };
                 frame.Actors.Add(probe);
             }
             if (probe == null) return;

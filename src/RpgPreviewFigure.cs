@@ -17,7 +17,7 @@ namespace Cthangover.Tools.RpgObjectEditor
         public static void Normalize(TileVisual look)
         {
             using var image = look.Texture.GetImage();
-            var frame = TileWalkSheet.Frame(look.Texture.GetSize(), TileWalkSheet.IdleColumn, 0);
+            var frame = TileWalkSheet.Frame(look.Texture, TileWalkSheet.Animation(look.Texture).IdleColumn, 0);
             var region = new Rect2I((Vector2I)frame.Position, (Vector2I)frame.Size);
             var body = LargestBody(image, region, 1);
             body.Position -= region.Position;
