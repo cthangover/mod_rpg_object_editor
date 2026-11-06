@@ -4,6 +4,6 @@
     "src/*.cs"
   ],
   "depends": [
-    "junior_reaper_paper_grief>=0.2"
+    "junior_reaper_paper_grief>=0.1.0"
   ]
 }
