@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "author": "ct",
   "description": "Edits RPG objects (model v2) while the game runs: surfaces, segments, sprites and actors in a form by shape, their pictures, footprint, anchor, interaction and extends, with a preview in the top-down and the isometric projection drawn by the game's own renderer. A foreign object is edited as a patch in the own mod; the source stays untouched.",
-  "category": "tools, editor",
+  "categories": ["tools", "editor"],
   "sources": [
     "src/**/*.cs"
   ],
