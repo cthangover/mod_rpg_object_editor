@@ -8,7 +8,7 @@
       "Parts": [
         {
           "Id": "test",
-          "Image": "interior/bureau_hall_desk",
+          "Image": "interior/stas_office_personal_desk",
           "Geometry": "upright",
           "Size": [
             0.01,

@@ -4,6 +4,7 @@
     "src/*.cs"
   ],
   "depends": [
-    "junior_reaper_paper_grief>=0.1.0"
+    "junior_reaper_paper_grief>=0.1.0",
+    "village_pack>=0.1.0"
   ]
 }
