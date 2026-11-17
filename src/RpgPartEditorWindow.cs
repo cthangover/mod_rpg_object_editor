@@ -1,12 +1,12 @@
-using System;
-using System.Text.Json.Nodes;
-using Cthangover.Mods.Interface.Tool;
-using Cthangover.Mods.Rpg.Model;
-using Cthangover.Mods.Rpg.Validation;
-using Godot;
-
 namespace Cthangover.Tools.RpgObjectEditor
 {
+    using System;
+    using System.Text.Json.Nodes;
+    using Cthangover.Mods.Interface.Tool;
+    using Cthangover.Mods.Rpg.Model;
+    using Cthangover.Mods.Rpg.Validation;
+    using Godot;
+
     /// <summary>Window lifetime and Apply contract around an owning ModWidget workspace; invalid candidates stay editable.</summary>
     public partial class RpgPartEditorWindow : ToolWindow
     {

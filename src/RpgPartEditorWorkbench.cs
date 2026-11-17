@@ -1,23 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using Cthangover.Core.Mods.Resolvers;
-using Cthangover.Core.Utils;
-using Cthangover.Mods.Interface.Tool;
-using Cthangover.Mods.Interface.Base.Lists;
-using Cthangover.Mods.Interface.Theming;
-using Cthangover.Mods.Rpg;
-using Cthangover.Mods.Rpg.Model;
-using Cthangover.Mods.Rpg.Validation;
-using Cthangover.Mods.TileRender;
-using Cthangover.Tools.Common;
-using Cthangover.Tools.EntityEditor;
-using Godot;
-
 namespace Cthangover.Tools.RpgObjectEditor
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text.Json;
+    using System.Text.Json.Nodes;
+    using Cthangover.Core.Mods.Resolvers;
+    using Cthangover.Core.Utils;
+    using Cthangover.Mods.Interface.Tool;
+    using Cthangover.Mods.Interface.Base.Lists;
+    using Cthangover.Mods.Interface.Theming;
+    using Cthangover.Mods.Rpg;
+    using Cthangover.Mods.Rpg.Model;
+    using Cthangover.Mods.Rpg.Validation;
+    using Cthangover.Mods.TileRender;
+    using Cthangover.Tools.Common;
+    using Cthangover.Tools.EntityEditor;
+    using Godot;
+
     /// <summary>Map-editor layout: permanent layers list, large canvas, explicit selection/depth/player tools and an inspector.</summary>
     internal sealed partial class RpgPartEditorWorkbench : ModWidget
     {

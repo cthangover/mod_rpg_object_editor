@@ -1,10 +1,10 @@
-using System.Text.Json.Nodes;
-using Cthangover.Tools.EntityEditor;
-using Cthangover.Mods.Interface.Tool;
-using Godot;
-
 namespace Cthangover.Tools.RpgObjectEditor
 {
+    using System.Text.Json.Nodes;
+    using Cthangover.Tools.EntityEditor;
+    using Cthangover.Mods.Interface.Tool;
+    using Godot;
+
     /// <summary>The workspace edits a detached copy. Apply becomes one entity undo step, including foreign patches.</summary>
     public partial class RpgObjectEditorWindow
     {

@@ -1,18 +1,18 @@
-using System;
-using System.IO;
-using System.Text.Json;
-using Cthangover.Core.Bootstrap;
-using Cthangover.Core.Utils;
-using Cthangover.Mods.Interface.Tool;
-using Cthangover.Mods.Rpg.Model;
-using Cthangover.Mods.Rpg;
-using Cthangover.Mods.TileRender;
-using Cthangover.Mods.Rpg.Play;
-using Cthangover.Tools.Services;
-using Godot;
-
 namespace Cthangover.Tools.RpgObjectEditor.Tests.Visual
 {
+    using System;
+    using System.IO;
+    using System.Text.Json;
+    using Cthangover.Core.Bootstrap;
+    using Cthangover.Core.Utils;
+    using Cthangover.Mods.Interface.Tool;
+    using Cthangover.Mods.Rpg.Model;
+    using Cthangover.Mods.Rpg;
+    using Cthangover.Mods.TileRender;
+    using Cthangover.Mods.Rpg.Play;
+    using Cthangover.Tools.Services;
+    using Godot;
+
     /// <summary>
     /// Real room artwork exercises projected drags, undo, sort point, camera and Apply on detached editing data.
     /// </summary>
