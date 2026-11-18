@@ -56,7 +56,7 @@ namespace Cthangover.Tools.RpgObjectEditor
 
         protected override void Construct()
         {
-            objects = Entities.Collect<RpgObject>();
+            objects = Entities.Collect<RpgObject>(required: false);
             var column = new VBoxContainer();
             AddChild(column);
             column.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);

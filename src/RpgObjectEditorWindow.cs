@@ -324,7 +324,7 @@ namespace Cthangover.Tools.RpgObjectEditor
         /// <summary>Every surface material of the game: the dropdown of the ground around the object offers them.</summary>
         private static IEnumerable<string> SurfaceChoices()
         {
-            return Entities.Collect<RpgObject>().Values.Where(IsSurfaceObject).Select(ObjectId);
+            return Entities.Collect<RpgObject>(required: false).Values.Where(IsSurfaceObject).Select(ObjectId);
         }
 
         private void OnAnchorDragged(float[] anchor)
